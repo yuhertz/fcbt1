@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3-Digit Code Guessing Game</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+    }
+    #hint {
+        margin-top: 20px;
+        display: none;
+    }
+    .incorrect {
+        color: red;
+    }
+</style>
+</head>
+<body>
+    <h1>3-Digit Code Guessing Game</h1>
+    <p>Guess the 3-digit code:</p>
+    <form id="guessForm">
+        <input type="text" id="guessInput" maxlength="3">
+    </form>
+    <div id="hint"></div>
+
+    <h1><u>HINTS:</u></h1>
+    <ul>
+        <li>234 - two number are correct, one is well placed and the other wrongly placed</li>
+        <li>567 - nothing is correct</li>
+        <li>564 - one number is correct and well placed</li>
+        <li>401 - two number are correct but wrongly placed</li>
+        <li>124 - two number are correct, one is well placed and the other wrongly placed</li>
+    </ul>
+
+    <script>
+        const code = "314";
+        const guessForm = document.getElementById('guessForm');
+        const guessInput = document.getElementById('guessInput');
+        const hint = document.getElementById('hint');
+
+        guessForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const guess = guessInput.value;
+
+            if (guess === code) {
+                document.body.innerHTML = ''; // Clear the body
+                const congratsMessage = document.createElement('h2');
+                congratsMessage.textContent = 'Congratulations! You guessed the correct code: ' + code + ', this is the first 3 digit of locker number 26';
+                document.body.appendChild(congratsMessage);
+            } else {
+                hint.innerHTML = 'Incorrect';
+                hint.classList.add('incorrect');
+                hint.style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>
